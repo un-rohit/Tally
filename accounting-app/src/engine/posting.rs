@@ -259,8 +259,8 @@ impl PostingEngine {
             "SELECT company_id, fy_id, voucher_type_id, voucher_number, voucher_date, reference_no 
              FROM vouchers WHERE voucher_id = ?1",
             params![original_voucher_id],
-            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?),
-        ))?;
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?)),
+        )?;
 
         let orig_date = NaiveDate::parse_from_str(&v_date_str, "%Y-%m-%d")
             .map_err(|e| AccountingError::Validation(e.to_string()))?;
@@ -293,6 +293,7 @@ impl PostingEngine {
                 narration: Some(format!("Reversal of {}: {}", v_num, reason)),
             });
         }
+        drop(stmt);
 
         let draft = VoucherDraft {
             company_id,

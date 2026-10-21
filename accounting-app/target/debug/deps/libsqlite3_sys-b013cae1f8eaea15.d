@@ -1,0 +1,9 @@
+D:\Tally\accounting-app\target\debug\deps\libsqlite3_sys-b013cae1f8eaea15.d: C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\lib.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\error.rs D:\Tally\accounting-app\target\debug\build\libsqlite3-sys-a1fcbf2e21e41200\out/bindgen.rs
+
+D:\Tally\accounting-app\target\debug\deps\liblibsqlite3_sys-b013cae1f8eaea15.rmeta: C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\lib.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\error.rs D:\Tally\accounting-app\target\debug\build\libsqlite3-sys-a1fcbf2e21e41200\out/bindgen.rs
+
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\lib.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.28.0\src\error.rs:
+D:\Tally\accounting-app\target\debug\build\libsqlite3-sys-a1fcbf2e21e41200\out/bindgen.rs:
+
+# env-dep:OUT_DIR=D:\\Tally\\accounting-app\\target\\debug\\build\\libsqlite3-sys-a1fcbf2e21e41200\\out
