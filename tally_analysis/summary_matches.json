@@ -1,0 +1,38 @@
+{
+  "9000": [
+    "[0x26a410] Multilevel\"/><w:tmpl w:val=\"F6F49578\"/><w:lvl w:ilvl=\"0\" w:tplc=\"B65EB478\"><w:nfc w:val=\"23\"/><w:lvlText w:val=\"-\"/><w:l",
+    "[0x26a610] ng=\"360\"/></w:pPr><w:rPr><w:rFonts w:ascii=\"Courier New\" w:h-ansi=\"Courier New\" w:cs=\"Courier New\" w:hint=\"default\"/></w",
+    "[0x26a706] \"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"3080\" w:hanging=\"360\"/></w:pPr><w:rPr><w:rFonts w:ascii=\"Wingdings\" w:h-",
+    "[0x26a832] \"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"3800\" w:hanging=\"360\"/></w:pPr><w:rPr><w:rFonts w:ascii=\"Symbol\" w:h-ans",
+    "[0x26aa10] </w:lvl><w:lvl w:ilvl=\"5\" w:tplc=\"40090005\" w:tentative=\"on\"><w:start w:val=\"1\"/><w:nfc w:val=\"23\"/><w:lvlText w:val=\""
+  ],
+  "9999": [
+    "[0x4c26e]                             <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6 5.01123L0.999984 10.0112L5.60272e-07 9.0",
+    "[0x4c6af]                             <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6 5.01123L0.999984 10.0112L5.60272e-07 9.0",
+    "[0x4fe4b]                     <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6 5L0.999984 10L1.07324e-07 8.99998L2.99999 5L4.88",
+    "[0x50010] clip-rule=\"evenodd\" d=\"M5 6L4.37115e-07 0.999983L1.00002 -7.86803e-07L5 2.99999L9 3.89414e-07L10 0.999985L5 6Z\" fill=\"#2",
+    "[0x60810] V10.9999V11C15 11.0216 14.9993 11.043 14.998 11.0642C14.9649 11.5866 14.5307 12 14 12C13.4693 12 13.0351 11.5866 13.002 "
+  ],
+  "Gateway of Tally": [],
+  "ENVELOPE": [],
+  "TALLYMESSAGE": [],
+  "<VOUCHER": [],
+  "<LEDGER": [],
+  "<COMPANY": [],
+  "ODBC": [],
+  "Balance Sheet": [
+    "[0x89083]             rep_name = 'Balance Sheet';"
+  ],
+  "Profit & Loss": [],
+  "Trial Balance": [
+    "[0x3385461]         //Quick Access is not added, If added there might be a case where Group Name in TDL might be set as Current Asse"
+  ],
+  "Day Book": [],
+  "Chart of Accounts": [],
+  "VCHTYPE": [],
+  "VoucherTypeName": [
+    "[0x8ba92]                 key = \"VoucherTypeName\";"
+  ],
+  "secDB": [],
+  "Tally Gateway": []
+}

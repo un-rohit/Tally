@@ -1,0 +1,126 @@
+{
+  "9000": [
+    "[0x28c52b] 210429000000Z",
+    "[0x28edf0] 210429000000Z",
+    "[0x28563a] ( Default: 9000 )"
+  ],
+  "SELECT": [
+    "[0x1ec968] selected-attribute-types",
+    "[0x1ec998] Selected Attribute Types",
+    "[0x1f3fa0] cert_select_dialog",
+    "[0x210918] bad selector",
+    "[0x213670] no drbg implementation selected",
+    "[0x240dd0] alpn_selected",
+    "[0x246d58] dane tlsa bad selector",
+    "[0x247650] Peer haven't sent GOST certificate, required for selected ciphersuite"
+  ],
+  "Tally": [
+    "[0x28cc44] Tally Solutions Pvt Ltd1 0",
+    "[0x28cc66] Tally Solutions Pvt Ltd0",
+    "[0x28d38e] http://www.tallysolutions.com/0",
+    "[0x28f509] Tally Solutions Pvt Ltd1 0",
+    "[0x28f52b] Tally Solutions Pvt Ltd0",
+    "[0x28fc66] http://www.tallysolutions.com/0",
+    "[0x1c18b0] Tally ODBC Driver64",
+    "[0x1c1b20] SOAPCreateTallySQLReq failed",
+    "[0x1c1f70] [Tally][Tally ODBC Driver64]",
+    "[0x1c2660] Tally Server"
+  ],
+  "http://": [
+    "[0x28c877] http://ocsp.digicert.com0A",
+    "[0x28c89c] 5http://cacerts.digicert.com/DigiCertTrustedRootG4.crt0C",
+    "[0x28c8e4] 2http://crl3.digicert.com/DigiCertTrustedRootG4.crl0",
+    "[0x28ce90] http://www.digicert.com/CPS0",
+    "[0x28cee5] Mhttp://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0S",
+    "[0x28cf3a] Mhttp://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0",
+    "[0x28cfa9] http://ocsp.digicert.com0\\",
+    "[0x28cfce] Phttp://cacerts.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crt0",
+    "[0x28d38e] http://www.tallysolutions.com/0",
+    "[0x28d9e2] http://ocsp.digicert.com0]"
+  ],
+  "PORT": [
+    "[0x1d36a0] %s algorithm \"%s\" unsupported",
+    "[0x1d5108] DSO support routines",
+    "[0x1e88a0] supportedApplicationContext",
+    "[0x1e8b48] supportedAlgorithms",
+    "[0x1eb8d8] id-it-unsupportedOIDs",
+    "[0x1f3a60] Software engine support",
+    "[0x1f3b00] Dynamic engine loading support",
+    "[0x1f4150] function not supported",
+    "[0x1f4228] pubkey export error",
+    "[0x1f4240] pubkey export length error"
+  ],
+  "COMPANY": [
+    "[0x1c1ba0] Call _GetCurrentCompany",
+    "[0x285186] CompanyName",
+    "[0x285772] Company"
+  ],
+  "LEDGER": [],
+  "VOUCHER": [],
+  "XML": [
+    "[0x1eb570] id-ct-xml",
+    "[0x1c2840] $$SysName:XML",
+    "[0x1c2958] XmlData",
+    "[0x1c6d88] XMLNode",
+    "[0x1c7120] XMLParser",
+    "[0x1c72a8] XMLNodeList",
+    "[0x1c75d0] Invalid char ? in xml tag.",
+    "[0x1c7658] XMLResult"
+  ],
+  "ENVELOPE": [
+    "[0x1d4130] PKCS7_ENVELOPE",
+    "[0x1d41a8] PKCS7_SIGN_ENVELOPE",
+    "[0x1d4248] d.enveloped",
+    "[0x1d4258] d.signed_and_enveloped",
+    "[0x1d4f70] digital envelope routines",
+    "[0x1e7818] pkcs7-envelopedData",
+    "[0x1e7840] pkcs7-signedAndEnvelopedData",
+    "[0x1eb540] id-smime-ct-authEnvelopedData",
+    "[0x217620] CMS_EnvelopedData_create",
+    "[0x217640] cms_EnvelopedData_init_bio"
+  ],
+  "REQUEST": [
+    "[0x1d4e70] NEW CERTIFICATE REQUEST",
+    "[0x1d4e88] CERTIFICATE REQUEST",
+    "[0x1ea088] Microsoft Extension Request",
+    "[0x1ea0e8] Extension Request",
+    "[0x1ea958] id-smime-ct-DVCSRequestData",
+    "[0x1ea9b8] id-smime-aa-receiptRequest",
+    "[0x1eb900] id-it-subscriptionRequest",
+    "[0x1ebe90] id-cmc-revokeRequest",
+    "[0x1f6118] Content-Type: application/ocsp-request",
+    "[0x213758] request too large for drbg"
+  ],
+  "RESPONSE": [
+    "[0x1ea988] id-smime-ct-DVCSResponseData",
+    "[0x1eaf38] Signing KDC Response",
+    "[0x1eb930] id-it-subscriptionResponse",
+    "[0x1ebed8] id-cmc-responseInfo",
+    "[0x1ec1e0] id-cct-PKIResponse",
+    "[0x1ec298] basicOCSPResponse",
+    "[0x1ec2c0] Basic OCSP Response",
+    "[0x1ec380] acceptableResponses",
+    "[0x1ec3b0] Acceptable OCSP Responses",
+    "[0x2157a0] OCSP_response_get1_basic"
+  ],
+  "SQLState": [],
+  "HY000": [],
+  "DSN": [
+    "[0x1c2ba8] SQLReadFileDSNW",
+    "[0x261824] ConfigDSN",
+    "[0x1c17e0] SQLReadFileDSN failed, SQLInstallerError could not get error",
+    "[0x1c1860] SQLReadFileDSN failed, with %s, %d",
+    "[0x1c1920] FILEDSN"
+  ],
+  "Driver": [
+    "[0x261938] SQLDriverConnectW",
+    "[0x1c18b0] Tally ODBC Driver64",
+    "[0x1c18d8] DRIVER",
+    "[0x1c1970] SQLDriverConnect",
+    "[0x1c1f70] [Tally][Tally ODBC Driver64]",
+    "[0x2851e8] Tally ODBC driver",
+    "[0x28537c] Tally ODBC Driver",
+    "[0x28544e] Tally ODBC Driver - Connection",
+    "[0x285696] Tally ODBC Driver - Connection"
+  ]
+}
