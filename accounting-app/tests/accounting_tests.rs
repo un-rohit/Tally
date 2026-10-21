@@ -683,6 +683,19 @@ fn test_trial_balance_profit_and_loss_and_balance_sheet_equilibrium() {
 fn test_mca_audit_trail_tamper_resistance() {
     let (conn, comp, _) = setup_test_company();
 
+    // Log an audit trail entry so records exist
+    AuditLogger::log(
+        &conn,
+        &comp.company_id,
+        "company",
+        &comp.company_id,
+        "INSERT",
+        Some("system"),
+        None,
+        None,
+    )
+    .unwrap();
+
     // Verify chain is valid initially
     assert!(AuditLogger::verify_chain(&conn, &comp.company_id).unwrap());
 

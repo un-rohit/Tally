@@ -6,6 +6,7 @@ pub struct DbMigrator;
 
 impl DbMigrator {
     pub const INITIAL_SCHEMA: &'static str = include_str!("../../migrations/V001__initial_schema.sql");
+    pub const GST_ENGINE_SCHEMA: &'static str = include_str!("../../migrations/V002__gst_engine.sql");
 
     /// Initializes a company SQLite database and executes migrations within a transaction.
     pub fn initialize_database(conn: &mut Connection) -> Result<()> {
@@ -31,11 +32,22 @@ impl DbMigrator {
             )
             .unwrap_or(None);
 
-        if current_version.is_none() || current_version.unwrap() < 1 {
+        let ver = current_version.unwrap_or(0);
+
+        if ver < 1 {
             // Apply V001
             tx.execute_batch(Self::INITIAL_SCHEMA)?;
             tx.execute(
                 "INSERT INTO schema_migrations (version, description) VALUES (1, 'initial_schema')",
+                [],
+            )?;
+        }
+
+        if ver < 2 {
+            // Apply V002
+            tx.execute_batch(Self::GST_ENGINE_SCHEMA)?;
+            tx.execute(
+                "INSERT INTO schema_migrations (version, description) VALUES (2, 'gst_engine')",
                 [],
             )?;
         }

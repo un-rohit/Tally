@@ -125,17 +125,15 @@ impl fmt::Display for Paise {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rust_decimal_macros::dec;
-
     #[test]
     fn test_decimal_safety() {
         // 0.10 + 0.20 in float is 0.30000000000000004
         // In Paise it must be exact
-        let p1 = Paise::from_decimal_rupees(dec!(0.10)).unwrap();
-        let p2 = Paise::from_decimal_rupees(dec!(0.20)).unwrap();
+        let p1 = Paise::from_decimal_rupees(Decimal::new(10, 2)).unwrap();
+        let p2 = Paise::from_decimal_rupees(Decimal::new(20, 2)).unwrap();
         let sum = (p1 + p2).unwrap();
         assert_eq!(sum, Paise(30));
-        assert_eq!(sum.to_decimal_rupees(), dec!(0.30));
+        assert_eq!(sum.to_decimal_rupees(), Decimal::new(30, 2));
     }
 
     #[test]
