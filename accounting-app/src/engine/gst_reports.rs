@@ -420,12 +420,11 @@ impl GstReportEngine {
         )?;
 
         // 4. Table 4(A)(5): All other ITC (Regular Purchases)
-        let (itc_igst, itc_cgst, itc_sgst): (i64, i64, i64, i64) = conn.query_row(
+        let (itc_igst, itc_cgst, itc_sgst): (i64, i64, i64) = conn.query_row(
             "SELECT 
                 COALESCE(SUM(ti.igst_amount_paise), 0),
                 COALESCE(SUM(ti.cgst_amount_paise), 0),
-                COALESCE(SUM(ti.sgst_amount_paise), 0),
-                0
+                COALESCE(SUM(ti.sgst_amount_paise), 0)
              FROM voucher_gst_tax_items ti
              JOIN vouchers v ON ti.voucher_id = v.voucher_id
              JOIN voucher_gst_details gd ON v.voucher_id = gd.voucher_id
@@ -434,7 +433,7 @@ impl GstReportEngine {
                AND gd.invoice_type = 'Purchase'
                AND gd.is_reverse_charge = 0",
             params![company_id, from_str, to_str],
-            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)),
         )?;
 
         let itc_rcm = Gstr3bItcSection {

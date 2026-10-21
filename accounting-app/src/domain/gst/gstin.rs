@@ -196,8 +196,9 @@ mod tests {
 
     #[test]
     fn test_invalid_gstin_format() {
-        assert!(Gstin::new("27AAAAA0000A1Z").is_err(), "Too short");
-        assert!(Gstin::new("XXAAAAA0000A1Z2").is_err(), "Invalid state digits");
-        assert!(Gstin::new("99AAAAA0000A1Z2").is_ok(), "State 99 center valid");
+        assert!(Gstin::validate_format("27AAAAA0000A1Z").is_err(), "Too short");
+        assert!(Gstin::validate_format("XXAAAAA0000A1Z2").is_err(), "Invalid state digits");
+        assert!(Gstin::validate_format("99AAAAA0000A1Z2").is_ok(), "State 99 center valid format");
+        assert!(Gstin::new_unchecked("99AAAAA0000A1Z2").is_ok());
     }
 }
