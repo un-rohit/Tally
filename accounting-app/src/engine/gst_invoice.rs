@@ -1,6 +1,5 @@
-use crate::audit::AuditLogger;
 use crate::domain::gst::{
-    CompanyGstRegistration, GstRate, Gstin, InvoiceTaxSummary, PartyRegistrationType,
+    CompanyGstRegistration, Gstin, InvoiceTaxSummary, PartyRegistrationType,
     TaxCalculator, TaxLineInput,
 };
 use crate::domain::ledger::Ledger;
@@ -127,7 +126,7 @@ impl GstInvoiceEngine {
             if let Some(id) = existing {
                 Ok(id)
             } else {
-                let l = Ledger::create(c, company_id, group_id, name, 0, None, false)?;
+                let l = Ledger::create(c, company_id, group_id, name, Paise(0), None, false)?;
                 Ok(l.ledger_id)
             }
         };
