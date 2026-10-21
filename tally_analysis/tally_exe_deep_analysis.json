@@ -1,0 +1,1087 @@
+{
+  "file": {
+    "path": "C:\\Program Files\\TallyPrime\\tally.exe",
+    "sizeBytes": 18485952,
+    "hashes": {
+      "md5": "4537d21f7471e9084dc881e712e6d1b4",
+      "sha1": "17f4bac2f6f12efaec6bd4c03baddc6c6c9122c9",
+      "sha256": "856e5236a7664c0d8d580585e1c31b443720badd7a0078512d41f6c380b7ed73"
+    }
+  },
+  "peHeader": {
+    "format": "PE32+ (64-bit)",
+    "machine": "0x8664 (AMD64 / x86_64)",
+    "linkerVersion": "14.35",
+    "subsystem": "IMAGE_SUBSYSTEM_WINDOWS_GUI (2)",
+    "entryPointRva": "0x2fd03ab",
+    "entryPointFileOffset": "0x11677ab",
+    "imageBase": "0x140000000",
+    "sizeOfImage": "0x3009000",
+    "sectionAlignment": "0x1000",
+    "fileAlignment": "0x200",
+    "dllCharacteristics": "0x8160"
+  },
+  "sections": [
+    {
+      "name": ".text",
+      "virtSize": "0x106b818",
+      "virtAddr": "0x1000",
+      "rawSize": 0,
+      "rawOffset": "0x0",
+      "characteristics": "0x60000020",
+      "entropy": 0
+    },
+    {
+      "name": ".rdata",
+      "virtSize": "0x62ee86",
+      "virtAddr": "0x106d000",
+      "rawSize": 6483968,
+      "rawOffset": "0x400",
+      "characteristics": "0x40000040",
+      "entropy": 4.811
+    },
+    {
+      "name": ".data",
+      "virtSize": "0x9a7bd4",
+      "virtAddr": "0x169c000",
+      "rawSize": 0,
+      "rawOffset": "0x0",
+      "characteristics": "0xc0000040",
+      "entropy": 0
+    },
+    {
+      "name": ".pdata",
+      "virtSize": "0xd2d74",
+      "virtAddr": "0x2044000",
+      "rawSize": 0,
+      "rawOffset": "0x0",
+      "characteristics": "0x40000040",
+      "entropy": 0
+    },
+    {
+      "name": "_RDATA",
+      "virtSize": "0x18c",
+      "virtAddr": "0x2117000",
+      "rawSize": 0,
+      "rawOffset": "0x0",
+      "characteristics": "0x40000040",
+      "entropy": 0
+    },
+    {
+      "name": ".vmp0",
+      "virtSize": "0x37f1c8",
+      "virtAddr": "0x2118000",
+      "rawSize": 0,
+      "rawOffset": "0x0",
+      "characteristics": "0xe0000060",
+      "entropy": 0
+    },
+    {
+      "name": ".vmp1",
+      "virtSize": "0xb4bc88",
+      "virtAddr": "0x2498000",
+      "rawSize": 11845120,
+      "rawOffset": "0x62f400",
+      "characteristics": "0xe0000060",
+      "entropy": 7.94
+    },
+    {
+      "name": ".reloc",
+      "virtSize": "0x1c4fc",
+      "virtAddr": "0x2fe4000",
+      "rawSize": 116224,
+      "rawOffset": "0x117b200",
+      "characteristics": "0x40000040",
+      "entropy": 5.482
+    },
+    {
+      "name": ".rsrc",
+      "virtSize": "0x7118",
+      "virtAddr": "0x3001000",
+      "rawSize": 29184,
+      "rawOffset": "0x1197800",
+      "characteristics": "0x40000040",
+      "entropy": 5.137
+    }
+  ],
+  "dataDirectories": [
+    {
+      "name": "Export Table",
+      "rva": 38386848,
+      "size": 7468
+    },
+    {
+      "name": "Import Table",
+      "rva": 38409640,
+      "size": 520
+    },
+    {
+      "name": "Resource Table",
+      "rva": 50335744,
+      "size": 28952
+    },
+    {
+      "name": "Exception Table",
+      "rva": 33832960,
+      "size": 863604
+    },
+    {
+      "name": "Certificate Table",
+      "rva": 18475520,
+      "size": 10432
+    },
+    {
+      "name": "Base Relocation Table",
+      "rva": 50216960,
+      "size": 115964
+    },
+    {
+      "name": "TLS Table",
+      "rva": 45881464,
+      "size": 56
+    },
+    {
+      "name": "Load Config Table",
+      "rva": 50215752,
+      "size": 320
+    },
+    {
+      "name": "IAT",
+      "rva": 45817856,
+      "size": 464
+    }
+  ],
+  "exports": {
+    "count": 151,
+    "items": [
+      {
+        "name": "ConfirmPluginSource",
+        "ordinal": 0,
+        "rva": "0x3e86e0"
+      },
+      {
+        "name": "FT_Activate_Size",
+        "ordinal": 1,
+        "rva": "0x682640"
+      },
+      {
+        "name": "FT_Add_Default_Modules",
+        "ordinal": 2,
+        "rva": "0x681d00"
+      },
+      {
+        "name": "FT_Add_Module",
+        "ordinal": 3,
+        "rva": "0x682670"
+      },
+      {
+        "name": "FT_Angle_Diff",
+        "ordinal": 4,
+        "rva": "0x6829c0"
+      },
+      {
+        "name": "FT_Atan2",
+        "ordinal": 5,
+        "rva": "0x682a30"
+      },
+      {
+        "name": "FT_Attach_File",
+        "ordinal": 6,
+        "rva": "0x682aa0"
+      },
+      {
+        "name": "FT_Attach_Stream",
+        "ordinal": 7,
+        "rva": "0x682be0"
+      },
+      {
+        "name": "FT_Bitmap_Blend",
+        "ordinal": 8,
+        "rva": "0x6e98b0"
+      },
+      {
+        "name": "FT_Bitmap_Convert",
+        "ordinal": 9,
+        "rva": "0x6e9f10"
+      },
+      {
+        "name": "FT_Bitmap_Copy",
+        "ordinal": 10,
+        "rva": "0x6ea3e0"
+      },
+      {
+        "name": "FT_Bitmap_Done",
+        "ordinal": 11,
+        "rva": "0x6ea570"
+      },
+      {
+        "name": "FT_Bitmap_Embolden",
+        "ordinal": 12,
+        "rva": "0x6ea5d0"
+      },
+      {
+        "name": "FT_Bitmap_Init",
+        "ordinal": 13,
+        "rva": "0x6ea920"
+      },
+      {
+        "name": "FT_Bitmap_New",
+        "ordinal": 14,
+        "rva": "0x6ea920"
+      },
+      {
+        "name": "FT_CeilFix",
+        "ordinal": 15,
+        "rva": "0x682e60"
+      },
+      {
+        "name": "FT_Cos",
+        "ordinal": 16,
+        "rva": "0x682e70"
+      },
+      {
+        "name": "FT_DivFix",
+        "ordinal": 17,
+        "rva": "0x682ea0"
+      },
+      {
+        "name": "FT_Done_Face",
+        "ordinal": 18,
+        "rva": "0x682f10"
+      },
+      {
+        "name": "FT_Done_FreeType",
+        "ordinal": 19,
+        "rva": "0x681d50"
+      },
+      {
+        "name": "FT_Done_Library",
+        "ordinal": 20,
+        "rva": "0x683080"
+      },
+      {
+        "name": "FT_Done_MM_Var",
+        "ordinal": 21,
+        "rva": "0x6e7ce0"
+      },
+      {
+        "name": "FT_Done_Size",
+        "ordinal": 22,
+        "rva": "0x683220"
+      },
+      {
+        "name": "FT_Error_String",
+        "ordinal": 23,
+        "rva": "0x5f9560"
+      },
+      {
+        "name": "FT_Face_GetCharVariantIndex",
+        "ordinal": 24,
+        "rva": "0x683340"
+      },
+      {
+        "name": "FT_Face_GetCharVariantIsDefault",
+        "ordinal": 25,
+        "rva": "0x6833c0"
+      },
+      {
+        "name": "FT_Face_GetCharsOfVariant",
+        "ordinal": 26,
+        "rva": "0x683410"
+      },
+      {
+        "name": "FT_Face_GetVariantSelectors",
+        "ordinal": 27,
+        "rva": "0x683460"
+      },
+      {
+        "name": "FT_Face_GetVariantsOfChar",
+        "ordinal": 28,
+        "rva": "0x6834a0"
+      },
+      {
+        "name": "FT_Face_Properties",
+        "ordinal": 29,
+        "rva": "0x6834f0"
+      },
+      {
+        "name": "FT_FloorFix",
+        "ordinal": 30,
+        "rva": "0x6835a0"
+      },
+      {
+        "name": "FT_Get_Advance",
+        "ordinal": 31,
+        "rva": "0x6835b0"
+      },
+      {
+        "name": "FT_Get_Advances",
+        "ordinal": 32,
+        "rva": "0x683680"
+      },
+      {
+        "name": "FT_Get_CMap_Format",
+        "ordinal": 33,
+        "rva": "0x683800"
+      },
+      {
+        "name": "FT_Get_CMap_Language_ID",
+        "ordinal": 34,
+        "rva": "0x683860"
+      },
+      {
+        "name": "FT_Get_Char_Index",
+        "ordinal": 35,
+        "rva": "0x6838c0"
+      },
+      {
+        "name": "FT_Get_Charmap_Index",
+        "ordinal": 36,
+        "rva": "0x683910"
+      },
+      {
+        "name": "FT_Get_Color_Glyph_ClipBox",
+        "ordinal": 37,
+        "rva": "0x683950"
+      },
+      {
+        "name": "FT_Get_Color_Glyph_Layer",
+        "ordinal": 38,
+        "rva": "0x683980"
+      },
+      {
+        "name": "FT_Get_Color_Glyph_Paint",
+        "ordinal": 39,
+        "rva": "0x6839c0"
+      },
+      {
+        "name": "FT_Get_Colorline_Stops",
+        "ordinal": 40,
+        "rva": "0x6839f0"
+      },
+      {
+        "name": "FT_Get_Default_Named_Instance",
+        "ordinal": 41,
+        "rva": "0x6e7d00"
+      },
+      {
+        "name": "FT_Get_First_Char",
+        "ordinal": 42,
+        "rva": "0x683a20"
+      },
+      {
+        "name": "FT_Get_Font_Format",
+        "ordinal": 43,
+        "rva": "0x683ac0"
+      },
+      {
+        "name": "FT_Get_Glyph_Name",
+        "ordinal": 44,
+        "rva": "0x683b00"
+      },
+      {
+        "name": "FT_Get_Kerning",
+        "ordinal": 45,
+        "rva": "0x683be0"
+      },
+      {
+        "name": "FT_Get_MM_Blend_Coordinates",
+        "ordinal": 46,
+        "rva": "0x6e7de0"
+      },
+      {
+        "name": "FT_Get_MM_Var",
+        "ordinal": 47,
+        "rva": "0x6e7ed0"
+      },
+      {
+        "name": "FT_Get_MM_WeightVector",
+        "ordinal": 48,
+        "rva": "0x6e7fb0"
+      },
+      {
+        "name": "FT_Get_Module",
+        "ordinal": 49,
+        "rva": "0x683da0"
+      },
+      {
+        "name": "FT_Get_Multi_Master",
+        "ordinal": 50,
+        "rva": "0x6e80b0"
+      },
+      {
+        "name": "FT_Get_Name_Index",
+        "ordinal": 51,
+        "rva": "0x683ec0"
+      },
+      {
+        "name": "FT_Get_Next_Char",
+        "ordinal": 52,
+        "rva": "0x683f60"
+      },
+      {
+        "name": "FT_Get_Paint",
+        "ordinal": 53,
+        "rva": "0x683fe0"
+      },
+      {
+        "name": "FT_Get_Paint_Layers",
+        "ordinal": 54,
+        "rva": "0x684030"
+      },
+      {
+        "name": "FT_Get_Postscript_Name",
+        "ordinal": 55,
+        "rva": "0x684060"
+      },
+      {
+        "name": "FT_Get_Renderer",
+        "ordinal": 56,
+        "rva": "0x6840e0"
+      },
+      {
+        "name": "FT_Get_Sfnt_LangTag",
+        "ordinal": 57,
+        "rva": "0x684110"
+      },
+      {
+        "name": "FT_Get_Sfnt_Name",
+        "ordinal": 58,
+        "rva": "0x684250"
+      },
+      {
+        "name": "FT_Get_Sfnt_Name_Count",
+        "ordinal": 59,
+        "rva": "0x6843a0"
+      },
+      {
+        "name": "FT_Get_Sfnt_Table",
+        "ordinal": 60,
+        "rva": "0x6843c0"
+      },
+      {
+        "name": "FT_Get_SubGlyph_Info",
+        "ordinal": 61,
+        "rva": "0x684420"
+      },
+      {
+        "name": "FT_Get_Track_Kerning",
+        "ordinal": 62,
+        "rva": "0x684480"
+      },
+      {
+        "name": "FT_Get_Transform",
+        "ordinal": 63,
+        "rva": "0x684500"
+      },
+      {
+        "name": "FT_Get_TrueType_Engine_Type",
+        "ordinal": 64,
+        "rva": "0x684530"
+      },
+      {
+        "name": "FT_Get_Var_Axis_Flags",
+        "ordinal": 65,
+        "rva": "0x6e8190"
+      },
+      {
+        "name": "FT_Get_Var_Blend_Coordinates",
+        "ordinal": 66,
+        "rva": "0x6e7de0"
+      },
+      {
+        "name": "FT_Get_Var_Design_Coordinates",
+        "ordinal": 67,
+        "rva": "0x6e81c0"
+      },
+      {
+        "name": "FT_Get_X11_Font_Format",
+        "ordinal": 68,
+        "rva": "0x683ac0"
+      },
+      {
+        "name": "FT_GlyphSlot_Own_Bitmap",
+        "ordinal": 69,
+        "rva": "0x6ea950"
+      },
+      {
+        "name": "FT_Init_FreeType",
+        "ordinal": 70,
+        "rva": "0x681d90"
+      },
+      {
+        "name": "FT_Library_SetLcdFilter",
+        "ordinal": 71,
+        "rva": "0x61c940"
+      },
+      {
+        "name": "FT_Library_SetLcdFilterWeights",
+        "ordinal": 72,
+        "rva": "0x61c940"
+      },
+      {
+        "name": "FT_Library_SetLcdGeometry",
+        "ordinal": 73,
+        "rva": "0x685000"
+      },
+      {
+        "name": "FT_Library_Version",
+        "ordinal": 74,
+        "rva": "0x685030"
+      },
+      {
+        "name": "FT_List_Add",
+        "ordinal": 75,
+        "rva": "0x685060"
+      },
+      {
+        "name": "FT_List_Finalize",
+        "ordinal": 76,
+        "rva": "0x685090"
+      },
+      {
+        "name": "FT_List_Find",
+        "ordinal": 77,
+        "rva": "0x685110"
+      },
+      {
+        "name": "FT_List_Insert",
+        "ordinal": 78,
+        "rva": "0x685140"
+      },
+      {
+        "name": "FT_List_Iterate",
+        "ordinal": 79,
+        "rva": "0x685170"
+      },
+      {
+        "name": "FT_List_Remove",
+        "ordinal": 80,
+        "rva": "0x6851e0"
+      },
+      {
+        "name": "FT_List_Up",
+        "ordinal": 81,
+        "rva": "0x685210"
+      },
+      {
+        "name": "FT_Load_Char",
+        "ordinal": 82,
+        "rva": "0x685250"
+      },
+      {
+        "name": "FT_Load_Glyph",
+        "ordinal": 83,
+        "rva": "0x6852b0"
+      },
+      {
+        "name": "FT_Load_Sfnt_Table",
+        "ordinal": 84,
+        "rva": "0x685990"
+      },
+      {
+        "name": "FT_Matrix_Invert",
+        "ordinal": 85,
+        "rva": "0x685c10"
+      },
+      {
+        "name": "FT_Matrix_Multiply",
+        "ordinal": 86,
+        "rva": "0x685cd0"
+      },
+      {
+        "name": "FT_MulDiv",
+        "ordinal": 87,
+        "rva": "0x686020"
+      },
+      {
+        "name": "FT_MulFix",
+        "ordinal": 88,
+        "rva": "0x686130"
+      },
+      {
+        "name": "FT_New_Face",
+        "ordinal": 89,
+        "rva": "0x686150"
+      },
+      {
+        "name": "FT_New_Library",
+        "ordinal": 90,
+        "rva": "0x6863a0"
+      },
+      {
+        "name": "FT_New_Memory_Face",
+        "ordinal": 91,
+        "rva": "0x686440"
+      },
+      {
+        "name": "FT_New_Size",
+        "ordinal": 92,
+        "rva": "0x686490"
+      },
+      {
+        "name": "FT_Open_Face",
+        "ordinal": 93,
+        "rva": "0x686660"
+      },
+      {
+        "name": "FT_Outline_Check",
+        "ordinal": 94,
+        "rva": "0x686680"
+      },
+      {
+        "name": "FT_Outline_Copy",
+        "ordinal": 95,
+        "rva": "0x6866f0"
+      },
+      {
+        "name": "FT_Outline_Decompose",
+        "ordinal": 96,
+        "rva": "0x6867b0"
+      },
+      {
+        "name": "FT_Outline_Done",
+        "ordinal": 97,
+        "rva": "0x686b70"
+      },
+      {
+        "name": "FT_Outline_Embolden",
+        "ordinal": 98,
+        "rva": "0x686c30"
+      },
+      {
+        "name": "FT_Outline_EmboldenXY",
+        "ordinal": 99,
+        "rva": "0x686c40"
+      },
+      {
+        "name": "FT_Outline_Get_Bitmap",
+        "ordinal": 100,
+        "rva": "0x687130"
+      },
+      {
+        "name": "FT_Outline_Get_CBox",
+        "ordinal": 101,
+        "rva": "0x6871b0"
+      },
+      {
+        "name": "FT_Outline_Get_Orientation",
+        "ordinal": 102,
+        "rva": "0x687260"
+      },
+      {
+        "name": "FT_Outline_New",
+        "ordinal": 103,
+        "rva": "0x687420"
+      },
+      {
+        "name": "FT_Outline_Render",
+        "ordinal": 104,
+        "rva": "0x687640"
+      },
+      {
+        "name": "FT_Outline_Reverse",
+        "ordinal": 105,
+        "rva": "0x687800"
+      },
+      {
+        "name": "FT_Outline_Transform",
+        "ordinal": 106,
+        "rva": "0x6878d0"
+      },
+      {
+        "name": "FT_Outline_Translate",
+        "ordinal": 107,
+        "rva": "0x6879c0"
+      },
+      {
+        "name": "FT_Palette_Data_Get",
+        "ordinal": 108,
+        "rva": "0x687a00"
+      },
+      {
+        "name": "FT_Palette_Select",
+        "ordinal": 109,
+        "rva": "0x687a70"
+      },
+      {
+        "name": "FT_Palette_Set_Foreground_Color",
+        "ordinal": 110,
+        "rva": "0x687b00"
+      },
+      {
+        "name": "FT_Property_Get",
+        "ordinal": 111,
+        "rva": "0x687b30"
+      },
+      {
+        "name": "FT_Property_Set",
+        "ordinal": 112,
+        "rva": "0x687c40"
+      },
+      {
+        "name": "FT_Reference_Face",
+        "ordinal": 113,
+        "rva": "0x688720"
+      },
+      {
+        "name": "FT_Reference_Library",
+        "ordinal": 114,
+        "rva": "0x688740"
+      },
+      {
+        "name": "FT_Remove_Module",
+        "ordinal": 115,
+        "rva": "0x688760"
+      },
+      {
+        "name": "FT_Render_Glyph",
+        "ordinal": 116,
+        "rva": "0x688800"
+      },
+      {
+        "name": "FT_Request_Size",
+        "ordinal": 117,
+        "rva": "0x688de0"
+      },
+      {
+        "name": "FT_RoundFix",
+        "ordinal": 118,
+        "rva": "0x688fa0"
+      },
+      {
+        "name": "FT_Select_Charmap",
+        "ordinal": 119,
+        "rva": "0x688fc0"
+      },
+      {
+        "name": "FT_Select_Size",
+        "ordinal": 120,
+        "rva": "0x6890f0"
+      },
+      {
+        "name": "FT_Set_Char_Size",
+        "ordinal": 121,
+        "rva": "0x689230"
+      },
+      {
+        "name": "FT_Set_Charmap",
+        "ordinal": 122,
+        "rva": "0x6892c0"
+      },
+      {
+        "name": "FT_Set_Debug_Hook",
+        "ordinal": 123,
+        "rva": "0x6893a0"
+      },
+      {
+        "name": "FT_Set_Default_Log_Handler",
+        "ordinal": 124,
+        "rva": "0x5e9c80"
+      },
+      {
+        "name": "FT_Set_Default_Properties",
+        "ordinal": 125,
+        "rva": "0x681e30"
+      },
+      {
+        "name": "FT_Set_Log_Handler",
+        "ordinal": 126,
+        "rva": "0x5e9c80"
+      },
+      {
+        "name": "FT_Set_MM_Blend_Coordinates",
+        "ordinal": 127,
+        "rva": "0x6e82b0"
+      },
+      {
+        "name": "FT_Set_MM_Design_Coordinates",
+        "ordinal": 128,
+        "rva": "0x6e84a0"
+      },
+      {
+        "name": "FT_Set_MM_WeightVector",
+        "ordinal": 129,
+        "rva": "0x6e85d0"
+      },
+      {
+        "name": "FT_Set_Named_Instance",
+        "ordinal": 130,
+        "rva": "0x6e8700"
+      },
+      {
+        "name": "FT_Set_Pixel_Sizes",
+        "ordinal": 131,
+        "rva": "0x6893c0"
+      },
+      {
+        "name": "FT_Set_Renderer",
+        "ordinal": 132,
+        "rva": "0x6895f0"
+      },
+      {
+        "name": "FT_Set_Transform",
+        "ordinal": 133,
+        "rva": "0x689710"
+      },
+      {
+        "name": "FT_Set_Var_Blend_Coordinates",
+        "ordinal": 134,
+        "rva": "0x6e82b0"
+      },
+      {
+        "name": "FT_Set_Var_Design_Coordinates",
+        "ordinal": 135,
+        "rva": "0x6e88c0"
+      },
+      {
+        "name": "FT_Sfnt_Table_Info",
+        "ordinal": 136,
+        "rva": "0x6897a0"
+      },
+      {
+        "name": "FT_Sin",
+        "ordinal": 137,
+        "rva": "0x689830"
+      },
+      {
+        "name": "FT_Stream_OpenLZW",
+        "ordinal": 138,
+        "rva": "0x6e8ab0"
+      },
+      {
+        "name": "FT_Tan",
+        "ordinal": 139,
+        "rva": "0x68a620"
+      },
+      {
+        "name": "FT_Trace_Set_Default_Level",
+        "ordinal": 140,
+        "rva": "0x5e9c80"
+      },
+      {
+        "name": "FT_Trace_Set_Level",
+        "ordinal": 141,
+        "rva": "0x5e9c80"
+      },
+      {
+        "name": "FT_Vector_From_Polar",
+        "ordinal": 142,
+        "rva": "0x68a6b0"
+      },
+      {
+        "name": "FT_Vector_Length",
+        "ordinal": 143,
+        "rva": "0x68a6d0"
+      },
+      {
+        "name": "FT_Vector_Polarize",
+        "ordinal": 144,
+        "rva": "0x68a9a0"
+      },
+      {
+        "name": "FT_Vector_Rotate",
+        "ordinal": 145,
+        "rva": "0x68aa90"
+      },
+      {
+        "name": "FT_Vector_Transform",
+        "ordinal": 146,
+        "rva": "0x68abe0"
+      },
+      {
+        "name": "FT_Vector_Unit",
+        "ordinal": 147,
+        "rva": "0x68ad30"
+      },
+      {
+        "name": "TT_New_Context",
+        "ordinal": 148,
+        "rva": "0x695790"
+      },
+      {
+        "name": "TT_RunIns",
+        "ordinal": 149,
+        "rva": "0x695f90"
+      },
+      {
+        "name": "_cÏÃtu\u001d\u00138ÐùXAª\u000f½¤hXb\u001aÝ\u0015rÀÆ¾Ýr\u001cÃÇKÊXX>¶ã>z\u0002²à\u001d¤Ê·\u001ehÑrn.è#jPBFmÝ0d+?\u001dºBE>6ÖîâXP\rnt6 Ù>Ð>.oÿÎª1ãx\u0002üÖ³ñ}w\u0006SBÞÄiPG¶uÄâ{ýÄ\"$üTÔ#Ùàê\u0017#Jñ8é\u0001]\u0013jw*nî0r\\ò\u0004ÿµj§`¹À:³\u0010sÈÑkïõÚ4êos­\u0018JÃiö>éè¨1ù¯\tËõ\u0002Ât\\¥×sÉô\u001dF#â\u0001~_o\u000eÈ:\u0004OÐõ-P~Ü\u0013VÖg\u0011þ\u00102íqú#X;Ï³\u0006#UAp5êt«½îÆ#2&;\n\u001cF¯QÖÏ¯#9I®ò\u0010ý«Û\u001aôÈxmIO \u000b\taåî25ÊF¢dtJu<KM\u0012Hlÿ&TÄ\tÂÜi$©b@Î.RADsïI°\u0005\u0002(û\bSo¨~¨ô\u0015~^Ê\u0002á!\u0017¾\u001búE-¢K/{¡ú\u0016b÷®J\n\u0002Á\fÆÐ.N²ÖÞ\u0003{æ«©5×KÀ\\Âô6¸Ê¡þbq¹Vðó&F·L_Þ¸<*ñZü·*\u0013»\u0012`Ód{rÕ¢°÷!©'\u000eb´jYò#±ødP)º<j\u001eÆÊ­1ðW» z\u0018\u0017Ç7#®°Òö\u0018XeHDÓÆ\u0018E\tÓÔy5¢\u0004ÿC²\t!újÞÂ£'~äêz6\u0015`6BØÄ±x,Àpï\u000eH½eyÍc!\u0018\u0014kEàRe®a¯Bo­õRò\"¼NSÀ9Èµ­Æ¡Ôßu¹8ZæèÐì¸ äÐêA\u001bª\bPZSæSh\u0002~/F\u0017{gO×4D4½Õ\u001aW#ø¡Ð­Ñ\u0018¡7¢ý¡×\u001b òc÷a¹Öy\u0019×H\"ø\\Ànä¯¾Ü;å|ÇFÝaÝÐ-\u001cL\"éhßÒÓx¬C~~\u0004gÕË»0¹|>SSÏ\u0019U¡*mAùÊ¨Î<×sØ0å6<I2»:¢ÌÕØÉ~%àÅªÍÌ\u0016\u0015ÆÒDXd\u0006áV\u0012L\u0010aµº$]\u0017Ié}ý´JpSóp\u000fw\u0006Í\u0018[µaZ.th mÕW\u0004¢ÙPBJ@BÁKçÇg3­:¸ZÜ@Eb\u001d±ÄîNìò\u0005z<~uó*½+3/Lý[-\u0017\t6½þá¸\r6fòåq]MZ\u000eÁfy4ÞGOgÍrWÁ<\u0013SS\u001e×F8ò!h\u001fvÛÍ.Ý)dïØÊK¢[u2)WH]ó¯ò{íòÅª¢°ê¢­/Ù/Aû\tJÅÄ ÈXFÒy­Ú-¼5\u0019\u0003\u0007¬ì\f¾Ò:Ä~È9\u0001Î):0\u0005o&Á\"ÿÛC$¨ø<_ú\tí2[DüÆúr`;çYÀ4ã3þ30>×ÕáaüvºcÄÉÒÏä)5­½yÍà\u0014ÙbU\bk&\u0006ÊTóÐ§\u0005ZK\u0012óEÓõ+è¢8´Æ\u0003ú]T0¥eÂÌ¡Ô\roß5Å\u001f(Bj+#Ä\u0018ïEÛy[ì0-\u00046\u0005¿ÍA÷bÊÊóöAfö\u001bRºS5.ñ£I¦¼½\u0006nª¦¼\rÚZ³\\ªµ®íHMÜFp\rã\u00078=ä{´V®eð¹\u000b\u0001r\u0004\u001cCÝµpv\b+ß®Ï¦IÅ§G \u000eYRbUÒ\u000e5\"6º\u0011ðzä(X[sµÜ²^l^]û{\u0015K\u0005lµBeV¢Dôý\u001b\u0014FSGh²Zï\u0001 \bÄçvÐ3V \"bJsJ_ßl¹\u0011-üò5a(/Jú^äèëz\u001cö\u0005Á\u0010JÛ~âgÎ<²ìzÚ\u0004>ïÆ:\u000b&ý\\½\u0019²ØþQÚÃq1J\u000b%¯D7\u001b\u0018\rá\u0015­ÿè@ä§TÍË³kóÌúøf\u00105Õ5³½¬r*¨_~F.óë%Ù÷;ò«-Ã\t6£tRAõ94³xõ¬^l\tÎ¹§®o\u001cM\nñ5H\"|'Ïñx´)`|L$|\rqFiUùÂÞÏ?°(7èW^I#\u0007\\^\fL¡©ÕäQ6Ä×\u0012V\tââÔÔ\u001dé6\u000fzæÃá½îßÞÌõ\u0014Uç\u0014ÔCÂxôFÇºa?\u001d¯\u0006\u0013\u0015ºÅéÔ·\u000bzÓ\bÌÛ¦²õX ÊÙ5tâ¤ S;ÿC¨dä(|VóboS¼»f&Ù Ã¾\u0005¥6v0\"e»\b \u001fû1\u0001»îµS_ÿ8ð¾¥h\u00035zõWx#¬µÑô\u001bo7\u0007ÜÉ\u001b1u\u0003cÙ3/ç)9Ý\u001e¹­ÝæHi¬ÉLT5ÿ\u0018ä$·³¤\u0003ã½ Ú°K\u0006õ1á ìÆ¾áþêN<\u0001¯v¡VÖ0ße\b\\áìïw° b·Ýu¶ükå\u0004\u001fG>Ãì3-3\u0012¬¥Ú\u001d\u000e«FÊªì{a?ZÑG}ÄüêHæqxøèÎMyâü¨}\nÔÝ,ò½]±8ÙÃÍÚ3$x\u0011dqz%z°æ¯qtu7ÕÞ\u0012Îï£ÓR4¥þrÑB\u0018<b\u0019zpåjù%°±á\u000e ¼ùØÈ=\\\u0011\u0019ã·Ü¸ö¸REO$\u00177\"«*\b\u001fú¢3\u0007ÅÑª¿08Èªù\ryGb\u001bµALFÏsH¥XhÞäR\u000f,^Q\u0010âcÍôþC{I\nìSO©\u0002u \u0018\u0014ð3Å\u0019sÕÜ;\u0014ñ.fSWÕ\"«VÕ^\u001bOÚt\u0003Óú:Eýþxs\u001f\rwæ\f[#üc\u0013öeÔä\u0011JÀ¾ô$ðºý(jpÔÏvÌ­$\u0015¹V0qÿÓÊïBÄ®ºÐU\\gUÑë\u0014¨\u000eÈ\u001bÀ£nd\u0011²hSBÇE;-¤cÅ;èÇ3~ô£\u001fzçy_ÓÚsøÿå\r\u0001É¢Âx\bëwø¹E÷É\u0003OÒ?²A¿>NV®\u0006WÖ\u0013Â»Ë\f\u0003ÈZø)\u0003áí\u0003¨­\f£´4¶VHõó\u001a*\f²7Ý;ÖM§:[\u0012fÒó94\f)£1]ëÔcPA¡õ¸,ÃÕwKg\u0011eÆG¦\u0001ûèÍ33½\u0013,dmé\u0015ûÎ¹È\r×þÔîá³Õã¶¬·\u0019M\u000bÐ×=\u001ag< \u0013t]\u0002ÑÔ]ÐÜþÜ@ ÷¬Öm\u0017Mæ§§î%¤#5\u000eÃ¢\u0015¸«[À´uÓN[?uºXDûz°ïjë$û)ä õå\u0006^g\u0015^ÔÝyó`ODhr9á<;\u0002À5\u0015ËMGQàû¶×k2ñ%H\"(øû\u0016\u0019J6tV}~n;%·ËÓ+¥X\u0007ûÅP·o¹KÉmG\u000eÍ÷U+|X¼Ut=ËdqÙìr¬9WkØFR!\u001e¢'J)öK¸p:o\u001a)ZÊ¡\u0005\u0005^0>Âô\u001a\u000e=vÊB^Âü\u0011#B¿ÊH=û4(\u0014¦\b\\rØ¹ÏÅèq¾âÀ@?-×ÉMwJó»ØÄ¾«µWê!$\u00112)=¡$<ÌÔÀ\u001fÇ§K\u001d\u0011\u000e\u0005ªµ\u0002\u0007û%fFD\u000fù>ÌðmIWÀïB³\u0014ý~àÌ'\u000bQU4Âü\u001d.ÛÛÃ`ç_ó­»\u0018= [«Êý@5¿\r\u0013\u0006ö,Põ\u0017§3ìëm\u0016`nW5K6¶«Õ»ð\u0010W5)z\u0003\u0001äVC¥b\\æ\u0001Å8qÂ£(rLãð^§VÉ\u0006¢tfÎ¿ r´4iu\u001eÎ\u001b\u0018=ÎsLk\u0019@\u0010ýñ4[g\u0011ó^\u0011V²ü4W\\\tóª$°¬VÒØ¨\u0007*À\u0015Ôáá\f5\u00146Õâ³c]Ò\bj+Óc\u001f\u0015`u\u0001Ç¡´1°þ¿MjG\u000epÚË©ÒÙ\u001aêñoÂÌ$\u0017bÔÔYçí}\u0003ô!`ÀcÌ«È.æ\u0006o\b\u0019hÌ\u0001±¼¢7=ÏB´|¼Îx4³Y½[qÕvfå \u0011þ\u000b?L¹ÿñoN(¶U·Çy|¾¦.BþFþ|pîÍ¾(\u0005¦×\u001c³ûÂ^?xE\u0015\u001bòk{Bc?òo«OÏ§IËco\bÏ©¬ga\u0007Ì\u0015êIêß@;©þn^e;9/\u0019WÎ ­|»[KÝQ¥6\u001eª°ëë\u0015Ðö·\u000e[\u0018»Ûxi1ZåÏñ\u001b;\u001f0È&?Ic¸õe'\u0010Á´}ªú©\u0005ÿ´ê\u0001Ñh»Ë\u0011Ã×ë1ÜÆ¨®Q\u0018èn¤þs:ýg\u0003QbÊùBWâ Ï\u000bÖ´Æ\u0012RvSò§q;Ø S\u0003ÜìéÛ°\"\b\u001b¾íX²ßM@«GÙ­ãD\u000ehß¿ýÉ?ÕÜÛ÷\t®Ð'Ãµ[0\u0002ª2\u0004Â,ÛÊ\bås:¼ä³HtäCëz¸å³\u0019",
+        "ordinal": 150,
+        "rva": "0x0"
+      }
+    ]
+  },
+  "imports": {
+    "dllCount": 23,
+    "modules": [
+      {
+        "name": "KERNEL32.dll",
+        "count": 6,
+        "functions": [
+          "GetModuleHandleA",
+          "LoadLibraryA",
+          "LocalAlloc",
+          "LocalFree",
+          "GetModuleFileNameA",
+          "ExitProcess"
+        ]
+      },
+      {
+        "name": "USER32.dll",
+        "count": 1,
+        "functions": [
+          "OpenClipboard"
+        ]
+      },
+      {
+        "name": "gdiplus.dll",
+        "count": 1,
+        "functions": [
+          "GdipDrawImageRect"
+        ]
+      },
+      {
+        "name": "WINSPOOL.DRV",
+        "count": 1,
+        "functions": [
+          "EndPagePrinter"
+        ]
+      },
+      {
+        "name": "GDI32.dll",
+        "count": 1,
+        "functions": [
+          "SelectClipRgn"
+        ]
+      },
+      {
+        "name": "NETAPI32.dll",
+        "count": 1,
+        "functions": [
+          "Netbios"
+        ]
+      },
+      {
+        "name": "WININET.dll",
+        "count": 1,
+        "functions": [
+          "InternetWriteFile"
+        ]
+      },
+      {
+        "name": "WS2_32.dll",
+        "count": 1,
+        "functions": [
+          "Ordinal_22"
+        ]
+      },
+      {
+        "name": "ODBC32.dll",
+        "count": 1,
+        "functions": [
+          "Ordinal_75"
+        ]
+      },
+      {
+        "name": "ADVAPI32.dll",
+        "count": 1,
+        "functions": [
+          "RegSetValueExW"
+        ]
+      },
+      {
+        "name": "SHELL32.dll",
+        "count": 1,
+        "functions": [
+          "FindExecutableW"
+        ]
+      },
+      {
+        "name": "COMDLG32.dll",
+        "count": 1,
+        "functions": [
+          "GetSaveFileNameW"
+        ]
+      },
+      {
+        "name": "VERSION.dll",
+        "count": 1,
+        "functions": [
+          "GetFileVersionInfoA"
+        ]
+      },
+      {
+        "name": "MPR.dll",
+        "count": 1,
+        "functions": [
+          "WNetGetUniversalNameW"
+        ]
+      },
+      {
+        "name": "SHLWAPI.dll",
+        "count": 1,
+        "functions": [
+          "PathStripToRootW"
+        ]
+      },
+      {
+        "name": "ole32.dll",
+        "count": 1,
+        "functions": [
+          "CoInitializeSecurity"
+        ]
+      },
+      {
+        "name": "OLEAUT32.dll",
+        "count": 1,
+        "functions": [
+          "Ordinal_9"
+        ]
+      },
+      {
+        "name": "MSWSOCK.dll",
+        "count": 1,
+        "functions": [
+          "AcceptEx"
+        ]
+      },
+      {
+        "name": "CRYPT32.dll",
+        "count": 1,
+        "functions": [
+          "CertGetIntendedKeyUsage"
+        ]
+      },
+      {
+        "name": "ncrypt.dll",
+        "count": 1,
+        "functions": [
+          "BCryptGenRandom"
+        ]
+      },
+      {
+        "name": "MSIMG32.dll",
+        "count": 1,
+        "functions": [
+          "AlphaBlend"
+        ]
+      },
+      {
+        "name": "IPHLPAPI.DLL",
+        "count": 1,
+        "functions": [
+          "GetTcpTable"
+        ]
+      },
+      {
+        "name": "WINTRUST.dll",
+        "count": 1,
+        "functions": [
+          "WinVerifyTrust"
+        ]
+      }
+    ]
+  },
+  "debugInfo": null,
+  "manifest": "<assembly xmlns=\"urn:schemas-microsoft-com:asm.v1\" manifestVersion=\"1.0\">\n  <compatibility xmlns=\"urn:schemas-microsoft-com:compatibility.v1\"> \n        <application> \n            <!-- Windows 10 --> \n            <supportedOS Id=\"{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}\"></supportedOS>\n            <!-- Windows 8.1 -->\n            <supportedOS Id=\"{1f676c76-80e1-4239-95bb-83d0f6d0da78}\"></supportedOS>\n            <!-- Windows 8 -->\n            <supportedOS Id=\"{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}\"></supportedOS>\t\t\t\n            <!-- Windows 7 -->\n            <supportedOS Id=\"{35138b9a-5d96-4fbd-8e2d-a2440225f93a}\"></supportedOS>\n        </application> \n  </compatibility>  \n  <application xmlns=\"urn:schemas-microsoft-com:asm.v3\">\n    <windowsSettings>\n        <dpiAwareness xmlns=\"http://schemas.microsoft.com/SMI/2016/WindowsSettings\">PerMonitorV2,PerMonitor</dpiAwareness>\n    </windowsSettings>\n  </application>\n</assembly>"
+}
