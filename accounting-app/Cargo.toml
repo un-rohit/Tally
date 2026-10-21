@@ -1,0 +1,25 @@
+[package]
+name = "accounting-app"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "accounting_app"
+path = "src/lib.rs"
+
+[[bin]]
+name = "accounting-app"
+path = "src/main.rs"
+
+[dependencies]
+rusqlite = { version = "0.31", features = ["bundled", "chrono"] }
+rust_decimal = "1.36"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.10", features = ["v4", "serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "1.0"
+
+[dev-dependencies]
+tempfile = "3.10"
