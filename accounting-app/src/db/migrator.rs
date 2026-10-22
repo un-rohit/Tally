@@ -7,6 +7,7 @@ pub struct DbMigrator;
 impl DbMigrator {
     pub const INITIAL_SCHEMA: &'static str = include_str!("../../migrations/V001__initial_schema.sql");
     pub const GST_ENGINE_SCHEMA: &'static str = include_str!("../../migrations/V002__gst_engine.sql");
+    pub const INVENTORY_BILLWISE_SCHEMA: &'static str = include_str!("../../migrations/V003__inventory_and_billwise.sql");
 
     /// Initializes a company SQLite database and executes migrations within a transaction.
     pub fn initialize_database(conn: &mut Connection) -> Result<()> {
@@ -48,6 +49,15 @@ impl DbMigrator {
             tx.execute_batch(Self::GST_ENGINE_SCHEMA)?;
             tx.execute(
                 "INSERT INTO schema_migrations (version, description) VALUES (2, 'gst_engine')",
+                [],
+            )?;
+        }
+
+        if ver < 3 {
+            // Apply V003
+            tx.execute_batch(Self::INVENTORY_BILLWISE_SCHEMA)?;
+            tx.execute(
+                "INSERT INTO schema_migrations (version, description) VALUES (3, 'inventory_and_billwise')",
                 [],
             )?;
         }

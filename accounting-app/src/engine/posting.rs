@@ -18,6 +18,20 @@ impl PostingEngine {
         draft: &VoucherDraft,
         user_id: Option<&str>,
     ) -> Result<Voucher> {
+        Self::post_voucher_with_pre_post_hook(conn, draft, user_id, |_tx, _vid| Ok(()))
+    }
+
+    /// Posts a voucher with an optional hook executed in the transaction before status is updated to 'Posted'.
+    /// Ideal for attaching domain metadata (such as GST details) while the voucher is still in 'Draft' state.
+    pub fn post_voucher_with_pre_post_hook<F>(
+        conn: &mut Connection,
+        draft: &VoucherDraft,
+        user_id: Option<&str>,
+        pre_post_hook: F,
+    ) -> Result<Voucher>
+    where
+        F: FnOnce(&rusqlite::Transaction, &str) -> Result<()>,
+    {
         // 1. Double-Entry Invariance Validation
         let (total_dr, total_cr, is_balanced) = draft.validate_balance();
         if !is_balanced {
@@ -141,7 +155,10 @@ impl PostingEngine {
             )?;
         }
 
-        // 7. Transition Voucher Status to 'Posted'
+        // 7. Invoke Pre-Post Hook (e.g. for inserting GST metadata while voucher is still Draft)
+        pre_post_hook(&tx, &voucher_id)?;
+
+        // 8. Transition Voucher Status to 'Posted'
         // This will trigger SQLite trigger `trg_verify_voucher_balance_on_post`
         tx.execute(
             "UPDATE vouchers SET status = 'Posted', posted_at = ?1, posted_by_user_id = ?2 

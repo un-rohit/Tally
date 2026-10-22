@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS voucher_gst_details (
     place_of_supply TEXT NOT NULL,
     is_interstate INTEGER NOT NULL CHECK (is_interstate IN (0, 1)),
     is_reverse_charge INTEGER DEFAULT 0 CHECK (is_reverse_charge IN (0, 1)),
-    invoice_type TEXT DEFAULT 'B2B' CHECK (invoice_type IN ('B2B', 'B2CL', 'B2CS', 'Export', 'NilRated', 'Exempt')),
+    invoice_type TEXT DEFAULT 'B2B' CHECK (invoice_type IN ('B2B', 'B2CL', 'B2CS', 'Export', 'NilRated', 'Exempt', 'CDNR', 'Purchase')),
     supply_type TEXT DEFAULT 'Taxable' CHECK (supply_type IN ('Taxable', 'ZeroRated', 'NilRated', 'Exempt', 'NonGST')),
     eway_bill_no TEXT,
     eway_bill_date TEXT,

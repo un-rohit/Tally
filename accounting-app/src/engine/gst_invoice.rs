@@ -289,58 +289,58 @@ impl GstInvoiceEngine {
             entries,
         };
 
-        // 6. Post Voucher atomically
-        let voucher = PostingEngine::post_voucher(conn, &draft, user_id)?;
-
-        // 7. Insert GST metadata tables within the same database
-        let gst_detail_id = Uuid::new_v4().to_string();
-        conn.execute(
-            "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
-                                              place_of_supply, is_interstate, is_reverse_charge, invoice_type) 
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-            params![
-                gst_detail_id,
-                voucher.voucher_id,
-                req.customer_ledger_id,
-                req.party_gstin,
-                req.place_of_supply,
-                if tax_summary.is_interstate { 1 } else { 0 },
-                if req.is_reverse_charge { 1 } else { 0 },
-                invoice_type,
-            ],
-        )?;
-
-        for line in &tax_summary.lines {
-            let tax_item_id = Uuid::new_v4().to_string();
-            conn.execute(
-                "INSERT INTO voucher_gst_tax_items (
-                    tax_item_id, voucher_id, line_number, hsn_code, description, 
-                    is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
-                    gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
-                    igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
-                ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+        // 6. Post Voucher atomically with GST metadata hook (executed while status is still 'Draft')
+        let voucher = PostingEngine::post_voucher_with_pre_post_hook(conn, &draft, user_id, |tx, vid| {
+            let gst_detail_id = Uuid::new_v4().to_string();
+            tx.execute(
+                "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
+                                                  place_of_supply, is_interstate, is_reverse_charge, invoice_type) 
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
                 params![
-                    tax_item_id,
-                    voucher.voucher_id,
-                    line.line_number as i32,
-                    line.hsn_code,
-                    line.description,
-                    if line.is_tax_inclusive { 1 } else { 0 },
-                    line.gross_amount.0,
-                    line.taxable_amount.0,
-                    line.gst_rate.basis_points() as i32,
-                    line.igst_rate_bp as i32,
-                    line.cgst_rate_bp as i32,
-                    line.sgst_rate_bp as i32,
-                    line.igst_amount.0,
-                    line.cgst_amount.0,
-                    line.sgst_amount.0,
-                    line.total_tax.0,
-                    line.line_total.0,
-                    if line.is_reverse_charge { 1 } else { 0 },
+                    gst_detail_id,
+                    vid,
+                    req.customer_ledger_id,
+                    req.party_gstin,
+                    req.place_of_supply,
+                    if tax_summary.is_interstate { 1 } else { 0 },
+                    if req.is_reverse_charge { 1 } else { 0 },
+                    invoice_type,
                 ],
             )?;
-        }
+
+            for line in &tax_summary.lines {
+                let tax_item_id = Uuid::new_v4().to_string();
+                tx.execute(
+                    "INSERT INTO voucher_gst_tax_items (
+                        tax_item_id, voucher_id, line_number, hsn_code, description, 
+                        is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
+                        gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
+                        igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
+                    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+                    params![
+                        tax_item_id,
+                        vid,
+                        line.line_number as i32,
+                        line.hsn_code,
+                        line.description,
+                        if line.is_tax_inclusive { 1 } else { 0 },
+                        line.gross_amount.0,
+                        line.taxable_amount.0,
+                        line.gst_rate.basis_points() as i32,
+                        line.igst_rate_bp as i32,
+                        line.cgst_rate_bp as i32,
+                        line.sgst_rate_bp as i32,
+                        line.igst_amount.0,
+                        line.cgst_amount.0,
+                        line.sgst_amount.0,
+                        line.total_tax.0,
+                        line.line_total.0,
+                        if line.is_reverse_charge { 1 } else { 0 },
+                    ],
+                )?;
+            }
+            Ok(())
+        })?;
 
         Ok(GstInvoiceResult {
             voucher,
@@ -513,55 +513,56 @@ impl GstInvoiceEngine {
             entries,
         };
 
-        let voucher = PostingEngine::post_voucher(conn, &draft, user_id)?;
-
-        let gst_detail_id = Uuid::new_v4().to_string();
-        conn.execute(
-            "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
-                                              place_of_supply, is_interstate, is_reverse_charge, invoice_type) 
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'B2B')",
-            params![
-                gst_detail_id,
-                voucher.voucher_id,
-                req.supplier_ledger_id,
-                req.supplier_gstin,
-                req.place_of_supply,
-                if tax_summary.is_interstate { 1 } else { 0 },
-                if req.is_reverse_charge { 1 } else { 0 },
-            ],
-        )?;
-
-        for line in &tax_summary.lines {
-            let tax_item_id = Uuid::new_v4().to_string();
-            conn.execute(
-                "INSERT INTO voucher_gst_tax_items (
-                    tax_item_id, voucher_id, line_number, hsn_code, description, 
-                    is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
-                    gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
-                    igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
-                ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+        let voucher = PostingEngine::post_voucher_with_pre_post_hook(conn, &draft, user_id, |tx, vid| {
+            let gst_detail_id = Uuid::new_v4().to_string();
+            tx.execute(
+                "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
+                                                  place_of_supply, is_interstate, is_reverse_charge, invoice_type) 
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'Purchase')",
                 params![
-                    tax_item_id,
-                    voucher.voucher_id,
-                    line.line_number as i32,
-                    line.hsn_code,
-                    line.description,
-                    if line.is_tax_inclusive { 1 } else { 0 },
-                    line.gross_amount.0,
-                    line.taxable_amount.0,
-                    line.gst_rate.basis_points() as i32,
-                    line.igst_rate_bp as i32,
-                    line.cgst_rate_bp as i32,
-                    line.sgst_rate_bp as i32,
-                    line.igst_amount.0,
-                    line.cgst_amount.0,
-                    line.sgst_amount.0,
-                    line.total_tax.0,
-                    line.line_total.0,
-                    if line.is_reverse_charge { 1 } else { 0 },
+                    gst_detail_id,
+                    vid,
+                    req.supplier_ledger_id,
+                    req.supplier_gstin,
+                    req.place_of_supply,
+                    if tax_summary.is_interstate { 1 } else { 0 },
+                    if req.is_reverse_charge { 1 } else { 0 },
                 ],
             )?;
-        }
+
+            for line in &tax_summary.lines {
+                let tax_item_id = Uuid::new_v4().to_string();
+                tx.execute(
+                    "INSERT INTO voucher_gst_tax_items (
+                        tax_item_id, voucher_id, line_number, hsn_code, description, 
+                        is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
+                        gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
+                        igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
+                    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+                    params![
+                        tax_item_id,
+                        vid,
+                        line.line_number as i32,
+                        line.hsn_code,
+                        line.description,
+                        if line.is_tax_inclusive { 1 } else { 0 },
+                        line.gross_amount.0,
+                        line.taxable_amount.0,
+                        line.gst_rate.basis_points() as i32,
+                        line.igst_rate_bp as i32,
+                        line.cgst_rate_bp as i32,
+                        line.sgst_rate_bp as i32,
+                        line.igst_amount.0,
+                        line.cgst_amount.0,
+                        line.sgst_amount.0,
+                        line.total_tax.0,
+                        line.line_total.0,
+                        if line.is_reverse_charge { 1 } else { 0 },
+                    ],
+                )?;
+            }
+            Ok(())
+        })?;
 
         Ok(GstInvoiceResult {
             voucher,
@@ -651,58 +652,59 @@ impl GstInvoiceEngine {
             entries,
         };
 
-        let voucher = PostingEngine::post_voucher(conn, &draft, user_id)?;
-
-        let gst_detail_id = Uuid::new_v4().to_string();
-        conn.execute(
-            "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
-                                              place_of_supply, is_interstate, is_reverse_charge, invoice_type,
-                                              original_voucher_id, original_invoice_no, original_invoice_date) 
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'CDNR', ?8, ?9, ?10)",
-            params![
-                gst_detail_id,
-                voucher.voucher_id,
-                req.customer_ledger_id,
-                req.party_gstin,
-                req.place_of_supply,
-                if tax_summary.is_interstate { 1 } else { 0 },
-                0,
-                req.original_voucher_id,
-                req.original_invoice_no,
-                req.original_invoice_date.format("%Y-%m-%d").to_string(),
-            ],
-        )?;
-
-        for line in &tax_summary.lines {
-            let tax_item_id = Uuid::new_v4().to_string();
-            conn.execute(
-                "INSERT INTO voucher_gst_tax_items (
-                    tax_item_id, voucher_id, line_number, hsn_code, description, 
-                    is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
-                    gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
-                    igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
-                ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, 0)",
+        let voucher = PostingEngine::post_voucher_with_pre_post_hook(conn, &draft, user_id, |tx, vid| {
+            let gst_detail_id = Uuid::new_v4().to_string();
+            tx.execute(
+                "INSERT INTO voucher_gst_details (gst_detail_id, voucher_id, party_ledger_id, party_gstin, 
+                                                  place_of_supply, is_interstate, is_reverse_charge, invoice_type,
+                                                  original_voucher_id, original_invoice_no, original_invoice_date) 
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'CDNR', ?8, ?9, ?10)",
                 params![
-                    tax_item_id,
-                    voucher.voucher_id,
-                    line.line_number as i32,
-                    line.hsn_code,
-                    line.description,
+                    gst_detail_id,
+                    vid,
+                    req.customer_ledger_id,
+                    req.party_gstin,
+                    req.place_of_supply,
+                    if tax_summary.is_interstate { 1 } else { 0 },
                     0,
-                    line.gross_amount.0,
-                    line.taxable_amount.0,
-                    line.gst_rate.basis_points() as i32,
-                    line.igst_rate_bp as i32,
-                    line.cgst_rate_bp as i32,
-                    line.sgst_rate_bp as i32,
-                    line.igst_amount.0,
-                    line.cgst_amount.0,
-                    line.sgst_amount.0,
-                    line.total_tax.0,
-                    line.line_total.0,
+                    req.original_voucher_id,
+                    req.original_invoice_no,
+                    req.original_invoice_date.format("%Y-%m-%d").to_string(),
                 ],
             )?;
-        }
+
+            for line in &tax_summary.lines {
+                let tax_item_id = Uuid::new_v4().to_string();
+                tx.execute(
+                    "INSERT INTO voucher_gst_tax_items (
+                        tax_item_id, voucher_id, line_number, hsn_code, description, 
+                        is_tax_inclusive, gross_amount_paise, taxable_amount_paise, 
+                        gst_rate_basis_points, igst_rate_basis_points, cgst_rate_basis_points, sgst_rate_basis_points, 
+                        igst_amount_paise, cgst_amount_paise, sgst_amount_paise, total_tax_paise, total_line_amount_paise, is_reverse_charge
+                    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, 0)",
+                    params![
+                        tax_item_id,
+                        vid,
+                        line.line_number as i32,
+                        line.hsn_code,
+                        line.description,
+                        0,
+                        line.gross_amount.0,
+                        line.taxable_amount.0,
+                        line.gst_rate.basis_points() as i32,
+                        line.igst_rate_bp as i32,
+                        line.cgst_rate_bp as i32,
+                        line.sgst_rate_bp as i32,
+                        line.igst_amount.0,
+                        line.cgst_amount.0,
+                        line.sgst_amount.0,
+                        line.total_tax.0,
+                        line.line_total.0,
+                    ],
+                )?;
+            }
+            Ok(())
+        })?;
 
         Ok(GstInvoiceResult {
             voucher,

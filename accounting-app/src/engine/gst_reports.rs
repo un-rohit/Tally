@@ -370,19 +370,20 @@ impl GstReportEngine {
         let from_str = from_date.format("%Y-%m-%d").to_string();
         let to_str = to_date.format("%Y-%m-%d").to_string();
 
-        // 1. Table 3.1(a): Outward Taxable Supplies
+        // 1. Table 3.1(a): Outward Taxable Supplies (net of credit notes as per CBIC guidelines)
         let (out_taxable, out_igst, out_cgst, out_sgst): (i64, i64, i64, i64) = conn.query_row(
             "SELECT 
-                COALESCE(SUM(ti.taxable_amount_paise), 0),
-                COALESCE(SUM(ti.igst_amount_paise), 0),
-                COALESCE(SUM(ti.cgst_amount_paise), 0),
-                COALESCE(SUM(ti.sgst_amount_paise), 0)
+                COALESCE(SUM(CASE WHEN vt.base_type = 'CreditNote' THEN -ti.taxable_amount_paise ELSE ti.taxable_amount_paise END), 0),
+                COALESCE(SUM(CASE WHEN vt.base_type = 'CreditNote' THEN -ti.igst_amount_paise ELSE ti.igst_amount_paise END), 0),
+                COALESCE(SUM(CASE WHEN vt.base_type = 'CreditNote' THEN -ti.cgst_amount_paise ELSE ti.cgst_amount_paise END), 0),
+                COALESCE(SUM(CASE WHEN vt.base_type = 'CreditNote' THEN -ti.sgst_amount_paise ELSE ti.sgst_amount_paise END), 0)
              FROM voucher_gst_tax_items ti
              JOIN vouchers v ON ti.voucher_id = v.voucher_id
              JOIN voucher_gst_details gd ON v.voucher_id = gd.voucher_id
+             JOIN voucher_types vt ON v.voucher_type_id = vt.voucher_type_id
              WHERE v.company_id = ?1 AND v.status = 'Posted'
                AND v.voucher_date BETWEEN ?2 AND ?3
-               AND gd.invoice_type IN ('B2B', 'B2CL', 'B2CS')
+               AND vt.base_type IN ('Sales', 'CreditNote')
                AND ti.gst_rate_basis_points > 0",
             params![company_id, from_str, to_str],
             |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?)),
@@ -394,9 +395,10 @@ impl GstReportEngine {
              FROM voucher_gst_tax_items ti
              JOIN vouchers v ON ti.voucher_id = v.voucher_id
              JOIN voucher_gst_details gd ON v.voucher_id = gd.voucher_id
+             JOIN voucher_types vt ON v.voucher_type_id = vt.voucher_type_id
              WHERE v.company_id = ?1 AND v.status = 'Posted'
                AND v.voucher_date BETWEEN ?2 AND ?3
-               AND gd.invoice_type != 'Purchase'
+               AND vt.base_type = 'Sales'
                AND ti.gst_rate_basis_points = 0",
             params![company_id, from_str, to_str],
             |r| r.get(0),

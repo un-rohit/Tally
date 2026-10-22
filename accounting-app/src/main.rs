@@ -139,7 +139,7 @@ fn main() -> Result<()> {
         &VoucherDraft {
             company_id: comp.company_id.clone(),
             fy_id: fy.fy_id.clone(),
-            voucher_type_id: vt_sales_id,
+            voucher_type_id: vt_sales_id.clone(),
             voucher_number: "INV-001".into(),
             voucher_date: NaiveDate::from_ymd_opt(2026, 4, 15).unwrap(),
             reference_no: Some("PO-882".into()),
@@ -227,10 +227,147 @@ fn main() -> Result<()> {
     println!("  Total (Liab + Profit):{}", bs.total_with_profit);
     println!("  Total Assets:         {}", bs.total_assets);
 
-    // 10. Verify Audit Chain
+    // 10. Phase 2 GST Engine Demonstration
+    println!("\n=== PHASE 2: INDIAN GST ACCOUNTING DEMONSTRATION ===");
+    CompanyGstRegistration::register(
+        &conn,
+        &comp.company_id,
+        "27AAPFU0939F1ZV",
+        "Acme Enterprises Pvt Ltd",
+        Some("Acme"),
+        "Regular",
+        true,
+    )?;
+    println!("Registered Company Primary GSTIN: 27AAPFU0939F1ZV (Maharashtra)");
+
+    let grp_debtors = AccountGroup::get_by_name(&conn, &comp.company_id, "Sundry Debtors")?
+        .expect("Sundry Debtors group missing");
+    let l_customer_intra = Ledger::create(
+        &conn,
+        &comp.company_id,
+        &grp_debtors.group_id,
+        "Zenith Technologies (MH)",
+        Paise::ZERO,
+        None,
+        true,
+    )?;
+    let l_customer_inter = Ledger::create(
+        &conn,
+        &comp.company_id,
+        &grp_debtors.group_id,
+        "Bangalore Cloudworks (KA)",
+        Paise::ZERO,
+        None,
+        true,
+    )?;
+
+    // Post Intra-state GST Sales Invoice: ₹1,00,000 @ 18% -> CGST ₹9,000, SGST ₹9,000, Total ₹1,18,000
+    let gst_inv1 = GstInvoiceEngine::post_sales_invoice(
+        &mut conn,
+        &GstSalesInvoiceRequest {
+            company_id: comp.company_id.clone(),
+            fy_id: fy.fy_id.clone(),
+            voucher_type_id: vt_sales_id.clone(),
+            voucher_number: "GST-INV-001".to_string(),
+            invoice_date: NaiveDate::from_ymd_opt(2026, 5, 10).unwrap(),
+            customer_ledger_id: l_customer_intra.ledger_id.clone(),
+            sales_ledger_id: l_sales.ledger_id.clone(),
+            place_of_supply: "27".to_string(),
+            party_gstin: Some("27AAAAA0000A1Z2".to_string()),
+            party_type: PartyRegistrationType::Regular,
+            is_reverse_charge: false,
+            reference_no: Some("PO-881".to_string()),
+            narration: Some("Cloud Architecture Services".to_string()),
+            line_items: vec![TaxLineInput {
+                line_number: 1,
+                hsn_code: Some("998313".to_string()),
+                description: "Cloud Consulting".to_string(),
+                amount_paise: Paise::from_rupees(100000)?,
+                is_tax_inclusive: false,
+                rate: GstRate::RATE_18,
+            }],
+            enable_rounding: true,
+        },
+        Some("usr_admin"),
+    )?;
+    println!(
+        "Posted GST Intra-state Invoice {}: Taxable {}, CGST {}, SGST {}, Total {}",
+        gst_inv1.voucher.voucher_number,
+        gst_inv1.tax_summary.total_taxable,
+        gst_inv1.tax_summary.total_cgst,
+        gst_inv1.tax_summary.total_sgst,
+        gst_inv1.tax_summary.final_invoice_total
+    );
+
+    // Post Inter-state GST Sales Invoice: ₹50,000 @ 18% -> IGST ₹9,000, Total ₹59,000
+    let gst_inv2 = GstInvoiceEngine::post_sales_invoice(
+        &mut conn,
+        &GstSalesInvoiceRequest {
+            company_id: comp.company_id.clone(),
+            fy_id: fy.fy_id.clone(),
+            voucher_type_id: vt_sales_id,
+            voucher_number: "GST-INV-002".to_string(),
+            invoice_date: NaiveDate::from_ymd_opt(2026, 5, 15).unwrap(),
+            customer_ledger_id: l_customer_inter.ledger_id.clone(),
+            sales_ledger_id: l_sales.ledger_id.clone(),
+            place_of_supply: "29".to_string(), // Karnataka
+            party_gstin: Some("29ABCDE1234F1ZW".to_string()),
+            party_type: PartyRegistrationType::Regular,
+            is_reverse_charge: false,
+            reference_no: None,
+            narration: Some("Export of IT Services interstate".to_string()),
+            line_items: vec![TaxLineInput {
+                line_number: 1,
+                hsn_code: Some("998311".to_string()),
+                description: "IT Advisory Services".to_string(),
+                amount_paise: Paise::from_rupees(50000)?,
+                is_tax_inclusive: false,
+                rate: GstRate::RATE_18,
+            }],
+            enable_rounding: true,
+        },
+        Some("usr_admin"),
+    )?;
+    println!(
+        "Posted GST Inter-state Invoice {}: Taxable {}, IGST {}, Total {}",
+        gst_inv2.voucher.voucher_number,
+        gst_inv2.tax_summary.total_taxable,
+        gst_inv2.tax_summary.total_igst,
+        gst_inv2.tax_summary.final_invoice_total
+    );
+
+    // 11. Generate GSTR-1 Preliminary Report
+    let gstr1 = GstReportEngine::generate_gstr1(
+        &conn,
+        &comp.company_id,
+        NaiveDate::from_ymd_opt(2026, 4, 1).unwrap(),
+        NaiveDate::from_ymd_opt(2026, 5, 31).unwrap(),
+    )?;
+    println!("\n=== GSTR-1 PRELIMINARY REPORT ===");
+    println!("Disclaimer: {}", gstr1.disclaimer);
+    println!("Total Taxable Value: {}", gstr1.total_taxable);
+    println!("Total Output CGST:   {}", gstr1.total_cgst);
+    println!("Total Output SGST:   {}", gstr1.total_sgst);
+    println!("Total Output IGST:   {}", gstr1.total_igst);
+    println!("B2B Invoices Count:  {}", gstr1.b2b_supplies.len());
+
+    // 12. Generate GSTR-3B Preliminary Report
+    let gstr3b = GstReportEngine::generate_gstr3b(
+        &conn,
+        &comp.company_id,
+        NaiveDate::from_ymd_opt(2026, 4, 1).unwrap(),
+        NaiveDate::from_ymd_opt(2026, 5, 31).unwrap(),
+    )?;
+    println!("\n=== GSTR-3B PRELIMINARY SUMMARY ===");
+    println!("Table 3.1(a) Outward Taxable: {}", gstr3b.outward_taxable_supplies.taxable_value);
+    println!("Table 3.1(a) Integrated Tax:  {}", gstr3b.outward_taxable_supplies.igst_amount);
+    println!("Table 3.1(a) Central Tax:     {}", gstr3b.outward_taxable_supplies.cgst_amount);
+    println!("Table 3.1(a) State/UT Tax:    {}", gstr3b.outward_taxable_supplies.sgst_amount);
+
+    // 13. Verify Final Audit Chain
     let audit_ok = AuditLogger::verify_chain(&conn, &comp.company_id)?;
     println!("\nMCA Cryptographic Audit Chain Valid: {}", audit_ok);
 
-    println!("\nAll core accounting modules executed successfully with complete equilibrium!");
+    println!("\nAll core accounting and GST modules executed successfully with complete equilibrium!");
     Ok(())
 }
