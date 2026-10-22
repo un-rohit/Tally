@@ -1,4 +1,3 @@
-use crate::domain::inventory::StockItem;
 use crate::domain::money::Paise;
 use crate::engine::inventory::valuation::InventoryValuationEngine;
 use crate::error::{AccountingError, Result};
@@ -91,31 +90,42 @@ impl InventoryReportEngine {
         sql.push_str(" ORDER BY i.name ASC");
 
         let mut stmt = conn.prepare(&sql)?;
-        let rows = if let Some(grp) = stock_group_id {
-            stmt.query_map(params![company_id, grp], |r| {
-                Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, String>(1)?,
-                    r.get::<_, Option<String>>(2)?,
-                    r.get::<_, String>(3)?,
-                    r.get::<_, String>(4)?,
-                    r.get::<_, i64>(5)?,
-                    r.get::<_, i64>(6)?,
-                ))
-            })?
-        } else {
-            stmt.query_map(params![company_id], |r| {
-                Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, String>(1)?,
-                    r.get::<_, Option<String>>(2)?,
-                    r.get::<_, String>(3)?,
-                    r.get::<_, String>(4)?,
-                    r.get::<_, i64>(5)?,
-                    r.get::<_, i64>(6)?,
-                ))
-            })?
-        };
+        let items_data: Vec<(String, String, Option<String>, String, String, i64, i64)> =
+            if let Some(grp) = stock_group_id {
+                let rows = stmt.query_map(params![company_id, grp], |r| {
+                    Ok((
+                        r.get(0)?,
+                        r.get(1)?,
+                        r.get(2)?,
+                        r.get(3)?,
+                        r.get(4)?,
+                        r.get(5)?,
+                        r.get(6)?,
+                    ))
+                })?;
+                let mut v = Vec::new();
+                for r in rows {
+                    v.push(r?);
+                }
+                v
+            } else {
+                let rows = stmt.query_map(params![company_id], |r| {
+                    Ok((
+                        r.get(0)?,
+                        r.get(1)?,
+                        r.get(2)?,
+                        r.get(3)?,
+                        r.get(4)?,
+                        r.get(5)?,
+                        r.get(6)?,
+                    ))
+                })?;
+                let mut v = Vec::new();
+                for r in rows {
+                    v.push(r?);
+                }
+                v
+            };
 
         let date_clause = if let Some(d) = as_of_date {
             format!("AND t.transaction_date <= '{}'", d.format("%Y-%m-%d"))
@@ -125,9 +135,7 @@ impl InventoryReportEngine {
 
         let mut summary_items = Vec::new();
 
-        for item_res in rows {
-            let (item_id, name, sku, symbol, method, op_qty, op_val) = item_res?;
-
+        for (item_id, name, sku, symbol, method, op_qty, op_val) in items_data {
             // Total inward movements
             let sql_in = format!(
                 "SELECT COALESCE(SUM(t.quantity_milli), 0), COALESCE(SUM(t.amount_paise), 0)
@@ -194,10 +202,11 @@ impl InventoryReportEngine {
 
         let mut running_qty = op_qty;
 
-        let sql = "SELECT t.transaction_date, t.voucher_id, v.voucher_number, v.voucher_type, 
+        let sql = "SELECT t.transaction_date, t.voucher_id, v.voucher_number, vt.name, 
                           w.name, t.movement_type, t.quantity_milli, t.rate_paise, t.amount_paise
                    FROM inventory_transactions t
                    JOIN vouchers v ON t.voucher_id = v.voucher_id
+                   JOIN voucher_types vt ON v.voucher_type_id = vt.voucher_type_id
                    JOIN warehouses w ON t.warehouse_id = w.warehouse_id
                    WHERE t.item_id = ?1 AND v.status = 'Posted'
                    ORDER BY t.transaction_date ASC, t.rowid ASC";

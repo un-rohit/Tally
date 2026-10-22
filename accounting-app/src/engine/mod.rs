@@ -1,9 +1,11 @@
+pub mod billwise;
 pub mod gst_invoice;
 pub mod gst_reports;
 pub mod inventory;
 pub mod posting;
 pub mod reports;
 
+pub use billwise::{BillAllocationHistoryItem, BillWiseEngine, OutstandingBill, PartyAgingRow};
 pub use gst_invoice::{
     GstCreditNoteRequest, GstInvoiceEngine, GstInvoiceResult, GstPurchaseInvoiceRequest,
     GstSalesInvoiceRequest, StandardGstLedgers,
@@ -19,3 +21,4 @@ pub use inventory::{
 };
 pub use posting::PostingEngine;
 pub use reports::ReportEngine;
+

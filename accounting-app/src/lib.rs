@@ -6,6 +6,7 @@ pub mod error;
 
 pub use audit::AuditLogger;
 pub use db::DbMigrator;
+pub use domain::billwise::{BillAllocation, BillAllocationDraft, BillRefType};
 pub use domain::company::{Company, FinancialYear};
 pub use domain::gst::{
     CalculatedTaxLine, CompanyGstRegistration, GstRate, Gstin, HsnSacItem, InvoiceTaxSummary,
@@ -19,6 +20,9 @@ pub use domain::ledger::{AccountGroup, AccountNature, Ledger};
 pub use domain::money::Paise;
 pub use domain::voucher::{
     EntryType, Voucher, VoucherDraft, VoucherEntry, VoucherEntryDraft, VoucherStatus,
+};
+pub use engine::billwise::{
+    BillAllocationHistoryItem, BillWiseEngine, OutstandingBill, PartyAgingRow,
 };
 pub use engine::gst_invoice::{
     GstCreditNoteRequest, GstInvoiceEngine, GstInvoiceResult, GstPurchaseInvoiceRequest,
@@ -36,4 +40,5 @@ pub use engine::inventory::{
 pub use engine::posting::PostingEngine;
 pub use engine::reports::{BalanceSheetReport, ProfitAndLossReport, ReportEngine, TrialBalanceReport};
 pub use error::{AccountingError, Result};
+
 

@@ -1,0 +1,15 @@
+cargo:rerun-if-env-changed=TAURI_CONFIG
+cargo:rustc-check-cfg=cfg(desktop)
+cargo:rustc-cfg=desktop
+cargo:rustc-check-cfg=cfg(mobile)
+cargo:rerun-if-changed=D:\Tally\accounting-app\tauri.conf.json
+cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME=app
+cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX=com_accounting
+cargo:rustc-check-cfg=cfg(dev)
+cargo:rustc-cfg=dev
+cargo:PERMISSION_FILES_PATH=D:\Tally\accounting-app\target\debug\build\accounting-app-2bd2e0fdcd706f7f\out\app-manifest\__app__-permission-files
+cargo:rerun-if-changed=D:\Tally\accounting-app\capabilities
+cargo:rerun-if-env-changed=REMOVE_UNUSED_COMMANDS
+cargo:rustc-env=TAURI_ENV_TARGET_TRIPLE=x86_64-pc-windows-gnu
+package.metadata does not exist
+cargo:rustc-link-arg-bins=D:\Tally\accounting-app\target\debug\build\accounting-app-2bd2e0fdcd706f7f\out\libresource.a

@@ -117,7 +117,6 @@ impl InventoryValuationEngine {
 
                 if lot.qty_remaining_milli >= qty_to_consume {
                     lot.qty_remaining_milli -= qty_to_consume;
-                    qty_to_consume = 0;
                     break;
                 } else {
                     qty_to_consume -= lot.qty_remaining_milli;

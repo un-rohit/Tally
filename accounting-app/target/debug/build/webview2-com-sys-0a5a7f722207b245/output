@@ -1,0 +1,2 @@
+cargo:rustc-link-search=native=D:\Tally\accounting-app\target\debug\build\webview2-com-sys-0a5a7f722207b245\out\x64
+cargo:rustc-link-lib=advapi32

@@ -8,6 +8,7 @@ impl DbMigrator {
     pub const INITIAL_SCHEMA: &'static str = include_str!("../../migrations/V001__initial_schema.sql");
     pub const GST_ENGINE_SCHEMA: &'static str = include_str!("../../migrations/V002__gst_engine.sql");
     pub const INVENTORY_BILLWISE_SCHEMA: &'static str = include_str!("../../migrations/V003__inventory_and_billwise.sql");
+    pub const BILLWISE_IMMUTABILITY_SCHEMA: &'static str = include_str!("../../migrations/V004__billwise_immutability.sql");
 
     /// Initializes a company SQLite database and executes migrations within a transaction.
     pub fn initialize_database(conn: &mut Connection) -> Result<()> {
@@ -58,6 +59,15 @@ impl DbMigrator {
             tx.execute_batch(Self::INVENTORY_BILLWISE_SCHEMA)?;
             tx.execute(
                 "INSERT INTO schema_migrations (version, description) VALUES (3, 'inventory_and_billwise')",
+                [],
+            )?;
+        }
+
+        if ver < 4 {
+            // Apply V004
+            tx.execute_batch(Self::BILLWISE_IMMUTABILITY_SCHEMA)?;
+            tx.execute(
+                "INSERT INTO schema_migrations (version, description) VALUES (4, 'billwise_immutability')",
                 [],
             )?;
         }

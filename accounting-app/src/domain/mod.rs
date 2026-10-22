@@ -1,3 +1,4 @@
+pub mod billwise;
 pub mod company;
 pub mod gst;
 pub mod inventory;
@@ -5,6 +6,7 @@ pub mod ledger;
 pub mod money;
 pub mod voucher;
 
+pub use billwise::{BillAllocation, BillAllocationDraft, BillRefType};
 pub use company::{Company, FinancialYear};
 pub use gst::{
     CalculatedTaxLine, CompanyGstRegistration, GstRate, Gstin, HsnSacItem, InvoiceTaxSummary,
@@ -17,3 +19,4 @@ pub use inventory::{
 pub use ledger::{AccountGroup, AccountNature, Ledger};
 pub use money::Paise;
 pub use voucher::{EntryType, Voucher, VoucherDraft, VoucherEntry, VoucherEntryDraft, VoucherStatus};
+
