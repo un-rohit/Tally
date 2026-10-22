@@ -12,8 +12,6 @@ import type {
   StockSummaryItem,
   TrialBalanceItem,
   Uom,
-  VoucherDetail,
-  VoucherDraft,
   VoucherSummary,
   Warehouse,
 } from '../types';

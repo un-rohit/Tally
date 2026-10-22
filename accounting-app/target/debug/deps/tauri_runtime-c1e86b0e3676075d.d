@@ -1,0 +1,10 @@
+D:\Tally\accounting-app\target\debug\deps\tauri_runtime-c1e86b0e3676075d.d: C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\lib.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\dpi.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\monitor.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview_permissions.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\window.rs
+
+D:\Tally\accounting-app\target\debug\deps\libtauri_runtime-c1e86b0e3676075d.rmeta: C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\lib.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\dpi.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\monitor.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview_permissions.rs C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\window.rs
+
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\lib.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\dpi.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\monitor.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\webview_permissions.rs:
+C:\Users\unroh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-runtime-2.12.2\src\window.rs:
